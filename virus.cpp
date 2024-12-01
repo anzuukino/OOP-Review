@@ -7,6 +7,7 @@
 using namespace std;
 
 Virus::Virus(string khanangmiendich, bool vaccin) {
+	this->vaccin = vaccin;
 	this->khanangmiendich = khanangmiendich;
 	if (khanangmiendich == "Cao") {
 		SetMienDich(1);
@@ -17,7 +18,6 @@ Virus::Virus(string khanangmiendich, bool vaccin) {
 	else {
 		SetMienDich(3);
 	}
-	this->vaccin = vaccin;
 }
 
 void Virus::SetMienDich(int i) {
@@ -26,9 +26,9 @@ void Virus::SetMienDich(int i) {
 	for (int k = 0; k < 3; k++) {
 		for (int j = 0; j < 4; j++) {
 			if (vaccin)
-				bang[k][j] = bangxacxuat2[k][j];
+				bang[k][j] = bangxacsuat2[k][j];
 			else
-				bang[k][j] = bangxacxuat[k][j];
+				bang[k][j] = bangxacsuat[k][j];
 		}
 	}
 	if (random <= bang[i - 1][0]) {
@@ -43,7 +43,6 @@ void Virus::SetMienDich(int i) {
 		trieuchung = "Trieu chung nang";
 		xacsuattuvong = bang[i - 1][3];
 	}
-	// cout << "xacsuat" << xacxuattuvong << endl;
 }
 
 string Virus::TrieuChung() {
@@ -55,7 +54,7 @@ void Virus::InThongTin() {
 		cout << this->thongtintrieuchung << endl;
 }
 
-double Virus::TinhXacXuatTuVong() {
+double Virus::TinhXacSuatTuVong() {
 	return this->xacsuattuvong * this->xacsuattrungbinh;
 }
 

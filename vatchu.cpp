@@ -7,32 +7,22 @@
 
 using namespace std;
 
-Vatchu::Vatchu(string maso, bool vaccin) {
+Vatchu::Vatchu(string maso, bool vaccin, string khanangmiendich) {
 	this->xacsuattuvong = 0;
 	this->maso = maso;
 	this->vaccin = vaccin;
-	
-	int random = rand() % 3;
-	if (random == 0) {
-		this->khanangmiendich = "Cao";
-	}
-	else if (random == 1) {
-		this->khanangmiendich = "Trung Binh";
-	}
-	else {
-		this->khanangmiendich = "Thap";
-	}
-	this->virus[0]= new SarsCov2(this->khanangmiendich, this->vaccin);
-	this->virus[1]= new HIV(this->khanangmiendich, this->vaccin);
-	this->virus[2]= new Ebola(this->khanangmiendich, this->vaccin);
-	for (int i = 0; i < 3; i++) {
+	this->khanangmiendich = khanangmiendich;
+	this->virus.push_back(new SarsCov2(this->khanangmiendich, this->vaccin));
+	this->virus.push_back(new HIV(this->khanangmiendich, this->vaccin));
+	this->virus.push_back(new Ebola(this->khanangmiendich, this->vaccin));
+	for (int i = 0; i < this->virus.size(); i++) {
 		this->trieuchung.push_back(this->virus[i]->TrieuChung());
 	}
 
 	
 	for (int i = 0; i < 3; i++){
 		double random2 = RandomDouble();
-		double xacsuat = this->virus[i]->TinhXacXuatTuVong();
+		double xacsuat = this->virus[i]->TinhXacSuatTuVong();
 		if (random2 <= xacsuat) {
 			this->tuvong = true;
 			break;
@@ -72,7 +62,7 @@ bool Vatchu::TuVong() {
 }
 
 Vatchu::~Vatchu() {
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < this->virus.size(); i++) {
 		delete this->virus[i];
 	}
 }

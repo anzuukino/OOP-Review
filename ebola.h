@@ -8,5 +8,6 @@ using namespace std;
 
 class Ebola : public Virus {
 public:
+	// Khởi tạo virus Ebola với khả năng miễn dịch và trạng thái tiêm vaccin
 	Ebola(string khanangmiendich, bool vaccin);
 };

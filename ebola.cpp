@@ -6,14 +6,6 @@
 
 using namespace std;
 
-/**
- * @brief
- * @param khanangmiendich
- * @param vaccin
- * Set 
- * @return
- */
-
 Ebola::Ebola(string khanangmiendich, bool vaccin) : Virus(khanangmiendich,vaccin) {
 	this->xacsuattrungbinh = 0.5;
 	if (this->trieuchung == "Trieu chung nang") {
